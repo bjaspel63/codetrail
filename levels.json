@@ -1,0 +1,85 @@
+[
+  {
+    "level": 1,
+    "prompt": "Level 1: The Locked Chest<br><br>Fix the code:<br>for i in range(5)<br>     print(i)",
+    "answerCheck": "for i in range(5):",
+    "successMsg": "✅ Correct! The chest opens and you find a golden key 🗝️",
+    "errorMsg": "❌ Wrong! Try again:<br>for i in range(5)<br>     print(i)",
+    "hint": "Remember, Python loops require a colon at the end of the for statement."
+  },
+  {
+    "level": 2,
+    "prompt": "Level 2: The Broken Bridge<br><br>Complete:<br>def build_bridge(planks):<br>    # return the number of planks",
+    "answerCheck": "return len(planks)",
+    "successMsg": "✅ Bridge fixed! You cross safely 🌉",
+    "errorMsg": "❌ Wrong! Complete:<br>def build_bridge(planks):<br>    # return the number of planks",
+    "hint": "Use the len() function to get the number of planks."
+  },
+  {
+    "level": 3,
+    "prompt": "Level 3: The Dragon’s Riddle<br><br>How do you print Hello World in Python?",
+    "answerCheck": "print('hello world')",
+    "successMsg": "✅ The dragon smiles 🐉 and lets you pass.",
+    "errorMsg": "❌ Wrong spell! Try again.",
+    "hint": "Use the print function with the string 'Hello World'."
+  },
+  {
+    "level": 4,
+    "prompt": "Level 4: The Magic Gate<br><br>Complete:<br>if x ____ 10:",
+    "answerCheck": ">",
+    "successMsg": "✅ The magic gate opens 🔢",
+    "errorMsg": "❌ Wrong! Fill in: if x ____ 10:",
+    "hint": "Use a comparison operator like > or <."
+  },
+  {
+    "level": 5,
+    "prompt": "Level 5: The Ancient Scroll<br><br>Store your name in a variable.",
+    "answerCheck": "name =",
+    "successMsg": "✅ The scroll glows 📜 and reveals the next clue.",
+    "errorMsg": "❌ Wrong! Store your name in a variable.",
+    "hint": "Assign your name to a variable like: name = 'Alice'"
+  },
+  {
+    "level": 6,
+    "prompt": "Level 3: Dragon’s Riddle<br><br>How do you print Hello in Python?",
+    "answerCheck": "print('hello')",
+    "successMsg": "✅ The dragon smiles 🐉 and lets you pass.",
+    "errorMsg": "❌ Wrong spell! Try again.",
+    "hint": "Use the print function with the string 'Hello World'."
+  },
+  {
+    "level": 7,
+    "prompt": "Level 7: The Lightning Puzzle<br><br>Complete:<br>x = 5<br>y = 10<br>print(x + ___)",
+    "answerCheck": "y",
+    "successMsg": "✅ Lightning clears your path ⚡!",
+    "errorMsg": "❌ Wrong! Complete: print(x + ___)",
+    "hint": "Fill the blank with the variable y."
+  },
+  {
+    "level": 8,
+    "prompt": "Multiple Choice: Which keyword defines a function in Python?",
+    "choices": ["function", "def", "func", "define"],
+    "correctChoiceIndex": 1,
+    "successMsg": "✅ Correct! 'def' defines a function.",
+    "errorMsg": "❌ Nope! Try again.",
+    "hint": "It's a three-letter keyword starting with 'd'."
+  },
+  {
+    "level": 9,
+    "prompt": "Multiple Choice: What symbol is used for comments in Python?",
+    "choices": ["//", "#", "/*", "<!--"],
+    "correctChoiceIndex": 1,
+    "successMsg": "✅ Correct! '#' is used for comments.",
+    "errorMsg": "❌ Nope! Try again.",
+    "hint": "Comments start with the 'hash' symbol."
+  },
+  {
+    "level": 10,
+    "prompt": "Multiple Choice: Which data type is used for True/False values?",
+    "choices": ["int", "str", "bool", "float"],
+    "correctChoiceIndex": 2,
+    "successMsg": "✅ Correct! 'bool' is for True/False values.",
+    "errorMsg": "❌ Nope! Try again.",
+    "hint": "It's short for 'Boolean'."
+  }
+]
