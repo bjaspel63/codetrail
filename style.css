@@ -219,62 +219,72 @@ button:active {
   white-space: nowrap;
 }
 
-/* Achievement section container */
+/* Achievement container */
 #achievement-badge-line {
   margin-top: 20px;
   display: flex;
-  flex-direction: column;   /* stack vertically */
-  align-items: stretch;
+  flex-direction: column;  /* stack vertically */
+  align-items: center;
   gap: 12px;
   width: 100%;
+  max-width: 100%;
+  padding: 0 5px;          /* small side padding for safety */
   box-sizing: border-box;
 }
 
 /* Each achievement card */
+#achievement-badge-line span,
 #achievement-badge-line .achievement {
+  display: block;
   background: #fffdf5;
   border: 2px solid #ffcc66;
   border-radius: 12px;
-  padding: 10px 14px;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.4;
   text-align: left;
+  width: 100%;             /* always fit inside parent */
+  max-width: 420px;        /* never grow too big on desktop */
   word-wrap: break-word;
-  overflow-wrap: break-word;
+  white-space: normal;
+  box-sizing: border-box;
 }
 
-/* Achievement title (emoji + bold text) */
+/* Title inside achievement */
 #achievement-badge-line .achievement-title {
   font-weight: 700;
-  font-size: clamp(0.95rem, 3.5vw, 1.2rem);
+  font-size: 1rem;
   margin-bottom: 4px;
   display: flex;
   align-items: center;
   gap: 6px;
-  color: #333;
 }
 
-/* Achievement description (smaller text) */
+/* Description */
 #achievement-badge-line .achievement-desc {
-  font-size: clamp(0.8rem, 3vw, 1rem);
+  font-size: 0.85rem;
   color: #555;
   line-height: 1.4;
 }
 
-/* Mobile adjustments */
+/* Mobile tweaks */
 @media (max-width: 480px) {
+  #achievement-badge-line span,
   #achievement-badge-line .achievement {
+    font-size: 0.85rem;
     padding: 8px 10px;
+    max-width: 100%;     /* full width on mobile */
   }
+
   #achievement-badge-line .achievement-title {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
+
   #achievement-badge-line .achievement-desc {
     font-size: 0.8rem;
   }
 }
-
 
 /* Final messages */
 .final-message {
@@ -373,6 +383,7 @@ body.exporting #finalScoreDisplay div[style*="border"] {
   75% { transform: rotate(5deg); }
   90% { transform: rotate(-5deg); }
 }
+
 
 
 
