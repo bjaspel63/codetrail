@@ -12,6 +12,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 /* Game container */
@@ -35,6 +36,12 @@ h1 {
 }
 h1::before {
   content: "🚀 ";
+}
+h2 {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  margin-bottom: 15px;
+  color: #d35400;
+  text-align: center;
 }
 
 p {
@@ -76,14 +83,21 @@ button {
   transition: background-color 0.3s, box-shadow 0.15s;
   user-select: none;
 }
-button:hover {
+button:hover:not(:disabled) {
   background-color: #ff5500;
   box-shadow: 0 7px 0 #d35400;
   animation: bounce 0.3s;
 }
-button:active {
+button:active:not(:disabled) {
   box-shadow: 0 2px 0 #d35400;
   transform: translateY(3px);
+}
+button:disabled {
+  background-color: #9e9e9e;
+  cursor: default;
+  box-shadow: none;
+  transform: none;
+  animation: none;
 }
 
 /* Output area */
@@ -107,8 +121,26 @@ button:active {
   max-width: 100%;
   box-sizing: border-box;
 }
-#output > div {
-  animation: fadeInUp 0.5s ease forwards;
+#output .content-box {
+  background: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  font-family: Consolas, monospace;
+  font-size: 1.1rem;
+  white-space: pre-line;
+  text-align: left;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+#output .success {
+  color: #2e7d32;
+  font-weight: bold;
+}
+#output .error {
+  color: #c62828;
+  font-weight: bold;
 }
 
 /* Progress */
@@ -127,6 +159,7 @@ button:active {
   color: #a0522d;
   margin-top: 10px;
   min-height: 40px;
+  white-space: pre-wrap;
 }
 #hintBtn {
   cursor: pointer;
@@ -166,10 +199,14 @@ button:active {
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
 }
 #choices-container button {
   flex: 1 1 45%;
-  min-width: 120px;
+  min-width: 100px;
+  max-width: 48%;
   font-size: clamp(1rem, 3vw, 1.3rem);
   padding: 12px 20px;
   margin: 8px 6px;
@@ -178,12 +215,16 @@ button:active {
   box-shadow: 0 4px 0 #b35e00;
   color: #fff;
   cursor: pointer;
+  min-width: 0; /* allow flex shrink */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  box-sizing: border-box;
 }
-#choices-container button:hover {
+#choices-container button:hover:not(:disabled) {
   background-color: #ff7f00;
   box-shadow: 0 6px 0 #b35e00;
 }
-#choices-container button:active {
+#choices-container button:active:not(:disabled) {
   box-shadow: 0 2px 0 #b35e00;
   transform: translateY(3px);
 }
@@ -194,7 +235,7 @@ button:active {
   border: 3px solid #ffcc33;
   border-radius: 20px;
   padding: 40px 20px;
-  margin: 0 auto;
+  margin: 0 auto 30px auto;
   width: 100%;
   max-width: 440px;
   min-height: 300px;
@@ -209,14 +250,18 @@ button:active {
   box-shadow: 0 6px 12px rgba(0,0,0,0.2);
   animation: fadeInUp 0.6s ease;
   line-height: 1.5;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  white-space: normal;
+  box-sizing: border-box;
 }
-.final-score,
-#finalScoreDisplay span {
+#finalScoreDisplay span.score-number {
   font-size: clamp(2rem, 8vw, 5rem);
   color: #ff6f00;
   margin-bottom: 1rem;
-  white-space: nowrap;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Achievement container */
@@ -228,27 +273,28 @@ button:active {
   gap: 12px;
   width: 100%;
   max-width: 100%;
-  padding: 0 5px;          /* small side padding for safety */
+  padding: 0 8px;
   box-sizing: border-box;
+  overflow: hidden; /* prevent overflow */
+  min-width: 0;
 }
 
 /* Each achievement card */
-#achievement-badge-line span,
 #achievement-badge-line .achievement {
-  display: block;
   background: #fffdf5;
   border: 2px solid #ffcc66;
   border-radius: 12px;
-  padding: 10px 12px;
+  padding: 10px 15px;
   font-size: 0.95rem;
   color: #333;
   line-height: 1.4;
   text-align: left;
-  width: 100%;             /* always fit inside parent */
-  max-width: 420px;        /* never grow too big on desktop */
+  width: 100%;
+  max-width: 420px;
   word-wrap: break-word;
   white-space: normal;
   box-sizing: border-box;
+  min-width: 0;
 }
 
 /* Title inside achievement */
@@ -270,11 +316,10 @@ button:active {
 
 /* Mobile tweaks */
 @media (max-width: 480px) {
-  #achievement-badge-line span,
   #achievement-badge-line .achievement {
     font-size: 0.85rem;
     padding: 8px 10px;
-    max-width: 100%;     /* full width on mobile */
+    max-width: 100%;
   }
 
   #achievement-badge-line .achievement-title {
@@ -284,14 +329,22 @@ button:active {
   #achievement-badge-line .achievement-desc {
     font-size: 0.8rem;
   }
+
+  #choices-container button {
+    flex-basis: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
 }
 
 /* Final messages */
 .final-message {
   margin-bottom: 2rem;
-  white-space: nowrap;
+  white-space: normal;
   font-size: clamp(1rem, 3vw, 1.2rem);
   text-align: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 .final-congrats {
   font-size: clamp(1.2rem, 3.5vw, 1.6rem);
@@ -312,12 +365,13 @@ button:active {
 .content-box {
   display: block;
   max-width: 100%;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
   word-wrap: break-word;
   white-space: normal;
   margin: 0 auto;
   text-align: left;
   line-height: 1.5;
+  box-sizing: border-box;
 }
 
 /* Progress bar */
@@ -342,66 +396,24 @@ button:active {
   margin: 15px auto 0 auto;
 }
 
-
-/* 🔧 Force achievements to stay inside card on all screens */
-#achievement-badge-line {
+/* Background music control */
+#bg-music-control {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background: #4b8bbe;
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 10px;
-  width: 100%;
-  max-width: 100%;
-  padding: 0 8px;
-  box-sizing: border-box;
-  overflow: hidden; /* prevent overflow */
-}
-
-#achievement-badge-line span {
-  display: block;
-  background: #fffdf5;
-  border: 2px solid #ffcc66;
-  border-radius: 10px;
-  padding: 8px 10px;
-  font-size: 0.9rem;   /* smaller so it fits */
-  line-height: 1.3;
-  width: 100%;         /* always inside parent */
-  max-width: 100%;     /* never grow beyond card */
-  white-space: normal; /* allow wrapping */
-  word-wrap: break-word;
-  box-sizing: border-box;
-  text-align: left;
-}
-
-/* 📱 Mobile adjustment */
-@media (max-width: 480px) {
-  #achievement-badge-line span {
-    font-size: 0.8rem;
-    padding: 6px 8px;
-  }
-}
-
-
-/* ---------------- Exporting (for PNG save) ---------------- */
-body.exporting #finalScoreDisplay {
-  font-size: 1rem !important;
-  padding: 20px !important;
-  min-height: auto !important;
-  box-shadow: none !important;
-  background: #fff !important;
-}
-body.exporting #finalScoreDisplay span {
-  font-size: 2rem !important;
-  font-weight: 900 !important;
-  color: #000 !important;
-}
-body.exporting #achievement-badge-line {
-  font-size: 0.8rem !important;
-  text-align: center !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-}
-body.exporting #finalScoreDisplay div[style*="border"] {
-  display: none !important;
+  justify-content: center;
+  user-select: none;
+  padding: 0;
 }
 
 /* Animations */
@@ -422,9 +434,3 @@ body.exporting #finalScoreDisplay div[style*="border"] {
   75% { transform: rotate(5deg); }
   90% { transform: rotate(-5deg); }
 }
-
-
-
-
-
-
