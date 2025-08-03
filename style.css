@@ -416,6 +416,44 @@ button:disabled {
   padding: 0;
 }
 
+/* 🔧 Force everything inside score card to stay responsive */
+#finalScoreDisplay,
+#achievement-badge-line,
+#achievement-badge-line .achievement {
+  max-width: 100% !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+/* 🔧 Score number (big text) should wrap on small screens */
+#finalScoreDisplay .score-number {
+  white-space: normal !important;
+  word-break: break-word;
+  text-align: center;
+}
+
+/* 📱 Mobile fix */
+@media (max-width: 480px) {
+  #finalScoreDisplay {
+    padding: 20px 15px;
+    font-size: 1rem;
+  }
+
+  #achievement-badge-line {
+    gap: 8px;
+  }
+
+  #achievement-badge-line .achievement {
+    font-size: 0.85rem;
+    padding: 8px 10px;
+  }
+}
+
+
 /* Animations */
 @keyframes fadeInUp {
   0% { opacity: 0; transform: translateY(20px); }
@@ -434,3 +472,4 @@ button:disabled {
   75% { transform: rotate(5deg); }
   90% { transform: rotate(-5deg); }
 }
+
