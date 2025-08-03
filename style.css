@@ -219,42 +219,62 @@ button:active {
   white-space: nowrap;
 }
 
-/* Achievement section */
+/* Achievement section container */
 #achievement-badge-line {
   margin-top: 20px;
   display: flex;
   flex-direction: column;   /* stack vertically */
-  align-items: stretch;     /* stretch full width */
-  gap: 10px;
+  align-items: stretch;
+  gap: 12px;
   width: 100%;
   box-sizing: border-box;
 }
 
-#achievement-badge-line span {
-  display: block;
-  background: #fff4d1;
-  border: 1px solid #ffcc66;
-  border-radius: 10px;
-  padding: 8px 10px;
-  font-size: clamp(0.85rem, 2.5vw, 1rem);
-  color: #333;
-  line-height: 1.4;
+/* Each achievement card */
+#achievement-badge-line .achievement {
+  background: #fffdf5;
+  border: 2px solid #ffcc66;
+  border-radius: 12px;
+  padding: 10px 14px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   text-align: left;
-  width: 100%;              /* full width of parent */
-  max-width: 100%;          /* never overflow container */
   word-wrap: break-word;
   overflow-wrap: break-word;
-  white-space: normal;      /* allow wrapping */
-  box-sizing: border-box;
 }
 
-/* Mobile tweaks */
+/* Achievement title (emoji + bold text) */
+#achievement-badge-line .achievement-title {
+  font-weight: 700;
+  font-size: clamp(0.95rem, 3.5vw, 1.2rem);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #333;
+}
+
+/* Achievement description (smaller text) */
+#achievement-badge-line .achievement-desc {
+  font-size: clamp(0.8rem, 3vw, 1rem);
+  color: #555;
+  line-height: 1.4;
+}
+
+/* Mobile adjustments */
 @media (max-width: 480px) {
-  #achievement-badge-line span {
-    font-size: 0.85rem;
-    padding: 6px 8px;
+  #achievement-badge-line .achievement {
+    padding: 8px 10px;
+  }
+  #achievement-badge-line .achievement-title {
+    font-size: 0.95rem;
+  }
+  #achievement-badge-line .achievement-desc {
+    font-size: 0.8rem;
   }
 }
+
 
 /* Final messages */
 .final-message {
@@ -353,6 +373,7 @@ body.exporting #finalScoreDisplay div[style*="border"] {
   75% { transform: rotate(5deg); }
   90% { transform: rotate(-5deg); }
 }
+
 
 
 
