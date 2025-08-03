@@ -3,10 +3,10 @@
   box-sizing: border-box;
 }
 body {
-  font-family: 'Comic Sans MS', sans-serif;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
   background: linear-gradient(135deg, #fceabb, #f8b500);
   margin: 0;
-  padding: 10px;
+  padding: 20px;
   color: #333;
   min-height: 100vh;
   display: flex;
@@ -18,7 +18,7 @@ body {
 #splash-screen, #game {
   background: #fff8dc;
   border-radius: 15px;
-  padding: 20px;
+  padding: 30px 20px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   max-width: 480px;
   width: 100%;
@@ -28,7 +28,7 @@ body {
 
 /* Titles */
 h1 {
-  font-size: clamp(1.8rem, 6vw, 3.2rem);
+  font-size: 3.2rem;
   color: #ff6600;
   margin-bottom: 5px;
   text-shadow: 1px 1px 2px #d35400;
@@ -38,7 +38,7 @@ h1::before {
 }
 
 p {
-  font-size: clamp(1rem, 4vw, 1.3rem);
+  font-size: 1.3rem;
   margin-top: 0;
   margin-bottom: 20px;
   color: #a0522d;
@@ -46,11 +46,12 @@ p {
 
 /* Inputs */
 input[type="text"] {
-  font-size: clamp(1rem, 4.5vw, 1.5rem);
-  padding: 12px;
+  font-size: 1.5rem;
+  padding: 12px 15px;
   border-radius: 10px;
   border: 2px solid #ff9f00;
   width: 100%;
+  max-width: 400px;
   margin-bottom: 20px;
   transition: border-color 0.3s;
 }
@@ -66,17 +67,14 @@ button {
   color: white;
   border: none;
   border-radius: 12px;
-  padding: 12px 20px;
-  font-size: clamp(1rem, 4vw, 1.5rem);
+  padding: 14px 28px;
+  font-size: 1.5rem;
   font-weight: bold;
   cursor: pointer;
   box-shadow: 0 5px 0 #d35400;
-  margin: 8px auto;
+  margin: 8px 6px;
   transition: background-color 0.3s, box-shadow 0.15s;
   user-select: none;
-  display: block;
-  width: 100%;
-  max-width: 320px;
 }
 button:hover {
   background-color: #ff5500;
@@ -90,10 +88,11 @@ button:active {
 
 /* Output area */
 #output {
-  font-size: clamp(1rem, 4vw, 1.3rem);
+  font-size: 1.3rem;
   margin: 0 auto 20px auto;
   min-height: 120px;
   white-space: pre-wrap;
+  word-wrap: break-word;
   overflow-wrap: anywhere;
   text-align: center;
   line-height: 1.5;
@@ -101,11 +100,12 @@ button:active {
   font-weight: 600;
   border: 2px solid #ff9f00;
   border-radius: 12px;
-  padding: 15px;
+  padding: 15px 20px;
   background: #fff3cc;
   box-shadow: inset 0 0 10px #ffcc33aa;
   width: 100%;
   max-width: 100%;
+  box-sizing: border-box;
 }
 #output > div {
   animation: fadeInUp 0.5s ease forwards;
@@ -113,9 +113,9 @@ button:active {
 
 /* Progress */
 #progress {
-  font-size: clamp(1rem, 3.5vw, 1.2rem);
+  font-size: 1.2rem;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   color: #b35400;
   text-align: center;
 }
@@ -123,7 +123,7 @@ button:active {
 /* Hint box */
 #hint {
   font-style: italic;
-  font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+  font-size: 1.1rem;
   color: #a0522d;
   margin-top: 10px;
   min-height: 40px;
@@ -137,7 +137,7 @@ button:active {
 .success {
   color: #007700;
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 .success::after {
   content: " ✨";
@@ -145,7 +145,7 @@ button:active {
 .error {
   color: #cc0000;
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 .error::after {
   content: " ⚠️";
@@ -153,7 +153,7 @@ button:active {
 
 /* Timer */
 #timer {
-  font-size: clamp(1rem, 3.5vw, 1.3rem);
+  font-size: 1.3rem;
   font-weight: bold;
   color: #e67e22;
   margin-top: 10px;
@@ -161,20 +161,16 @@ button:active {
 }
 
 /* Choices buttons */
-#choices-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-}
 #choices-container button {
-  flex: 1 1 45%;
-  min-width: 120px;
-  font-size: clamp(0.9rem, 3.5vw, 1.3rem);
-  padding: 10px;
-  border-radius: 12px;
+  min-width: 140px;
+  font-size: 1.3rem;
+  padding: 12px 20px;
+  margin: 8px 6px;
+  border-radius: 15px;
   background-color: #ff9f00;
   box-shadow: 0 4px 0 #b35e00;
+  color: #fff;
+  cursor: pointer;
 }
 #choices-container button:hover {
   background-color: #ff7f00;
@@ -190,88 +186,128 @@ button:active {
   background: #fffbe6;
   border: 3px solid #ffcc33;
   border-radius: 20px;
-  padding: 20px;
+  padding: 40px 20px;
   margin: 0 auto;
   width: 100%;
   max-width: 440px;
-  min-height: 300px;
+  min-height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size: clamp(1rem, 4vw, 1.5rem);
+  font-size: 1.5rem;
   font-weight: bold;
   color: #333;
   box-shadow: 0 6px 12px rgba(0,0,0,0.2);
   animation: fadeInUp 0.6s ease;
   line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 #finalScoreDisplay span {
-  font-size: clamp(2rem, 8vw, 3rem);
+  font-size: 3rem;
   color: #ff6f00;
 }
 
 /* Achievement badge line */
+/* Achievement badge line */
 #achievement-badge-line {
   margin-top: 20px;
-  font-size: clamp(0.8rem, 3vw, 1rem);
+  font-size: 1rem;          /* smaller than score */
   color: #555;
   font-weight: normal;
   line-height: 1.3;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;                 /* spacing between items */
 }
+
 #achievement-badge-line span {
   display: inline-block;
   background: #fff4d1;
   border: 1px solid #ffcc66;
   border-radius: 8px;
-  padding: 4px 6px;
-  font-size: clamp(0.8rem, 2.8vw, 1rem);
+  padding: 4px 8px;
+  font-size: 1rem;         /* slightly smaller text */
   white-space: nowrap;
 }
-
-/* Final messages */
 .final-message {
-  margin-bottom: 1rem;
-  font-size: clamp(1rem, 3.5vw, 1.2rem);
+  margin-bottom: 2rem;
+  white-space: nowrap; /* prevent breaking */
+  font-size: 1.2rem;
   text-align: center;
 }
+
 .final-congrats {
-  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #ff6600;
+  margin-bottom: 1rem;
+  text-align: center;
+  white-space: nowrap;   /* keep all in one line */
+}
+.final-congrats {
+  font-size: 1.6rem;
   font-weight: bold;
   color: #ff6600;
   margin-bottom: 0.5rem;
   text-align: center;
 }
+
 .final-player-name {
-  font-size: clamp(1.3rem, 5vw, 1.8rem);
+  font-size: 1.8rem;
   font-weight: 900;
   color: #d35400;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   text-align: center;
+}
+
+
+
+/* Generic content box */
+.content-box {
+  display: block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-wrap: break-word;
+  white-space: normal;
+  margin: 0 auto;
+  text-align: left;
+  line-height: 1.5;
 }
 
 /* Progress bar */
 #progress-bar-container {
   width: 100%;
   background: #ddd;
-  height: 12px;
-  border-radius: 6px;
-  margin-top: 8px;
+  height: 20px;
+  border-radius: 10px;
+  margin-top: 10px;
 }
 #progress-bar {
   height: 100%;
   width: 100%;
   background: #2196f3;
-  border-radius: 6px;
+  border-radius: 10px;
   transition: width 1s linear;
 }
 
-/* Exporting mode */
+/* Center Save PNG button */
+#output button {
+  display: block;
+  margin: 15px auto 0 auto;
+}
+
+.final-score {
+  font-size: 5rem;
+  color: #ff6f00;
+  margin-bottom: 1rem;
+  white-space: nowrap;  /* keeps score on one line */
+}
+
+
+/* ---------------- Exporting (for PNG save) ---------------- */
 body.exporting #finalScoreDisplay {
   font-size: 1rem !important;
   padding: 20px !important;
@@ -286,10 +322,12 @@ body.exporting #finalScoreDisplay span {
 }
 body.exporting #achievement-badge-line {
   font-size: 0.8rem !important;
+  text-align: center !important;
+  flex-wrap: wrap !important;
   justify-content: center !important;
 }
 body.exporting #finalScoreDisplay div[style*="border"] {
-  display: none !important;
+  display: none !important; /* hide detailed cards */
 }
 
 /* Animations */
@@ -309,4 +347,62 @@ body.exporting #finalScoreDisplay div[style*="border"] {
   60% { transform: rotate(-10deg); }
   75% { transform: rotate(5deg); }
   90% { transform: rotate(-5deg); }
+}
+
+/* ---------------- Responsive Design ---------------- */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  #finalScoreDisplay {
+    font-size: 1.2rem;
+    min-height: 300px;
+    padding: 30px 15px;
+  }
+  #finalScoreDisplay span {
+    font-size: 2.2rem !important;
+  }
+  button, 
+  #saveScoreBtn, 
+  #playAgainBtn {
+    width: 90%;
+    max-width: 320px;
+    font-size: 1.2rem;
+    padding: 12px;
+    margin: 10px auto;
+    display: block;
+  }
+  #finalScoreDisplay div[style*="border"] {
+    display: block !important;
+    width: 90% !important;
+    margin: 8px auto !important;
+  }
+}
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+  }
+  p {
+    font-size: 1rem;
+  }
+  input[type="text"] {
+    font-size: 1.1rem;
+    padding: 10px;
+  }
+  button {
+    font-size: 1rem;
+    padding: 10px;
+  }
+  #output {
+    font-size: 1rem;
+    min-height: 100px;
+  }
+  #finalScoreDisplay {
+    font-size: 1rem;
+    padding: 15px;
+    min-height: 250px;
+  }
+  #finalScoreDisplay span {
+    font-size: 1.8rem !important;
+  }
 }
