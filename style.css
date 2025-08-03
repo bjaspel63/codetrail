@@ -219,31 +219,44 @@ button:active {
   white-space: nowrap;
 }
 
-/* Achievement cards (fix mobile overflow) */
+/* Achievement section */
 #achievement-badge-line {
   margin-top: 20px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
+  flex-direction: column;   /* stack vertically */
+  align-items: center;
+  gap: 12px;
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 #achievement-badge-line span {
   display: block;
   background: #fff4d1;
   border: 1px solid #ffcc66;
-  border-radius: 10px;
-  padding: 8px 10px;
-  font-size: clamp(0.8rem, 2.5vw, 1rem);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 1rem;
   color: #333;
-  text-align: center;
-  line-height: 1.3;
-  max-width: 90%;         /* keeps them inside mobile width */
-  word-break: break-word; /* allows wrapping */
-  white-space: normal;    /* allows multi-line */
+  line-height: 1.4;
+  text-align: left;
+  width: 100%;              /* fill container */
+  max-width: 400px;         /* never wider than score card */
+  word-wrap: break-word;
+  white-space: normal;
   box-sizing: border-box;
 }
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  #achievement-badge-line span {
+    font-size: 0.85rem;
+    padding: 8px 10px;
+    max-width: 100%;        /* full width on very small screens */
+  }
+}
+
 
 
 /* Final messages */
@@ -343,4 +356,5 @@ body.exporting #finalScoreDisplay div[style*="border"] {
   75% { transform: rotate(5deg); }
   90% { transform: rotate(-5deg); }
 }
+
 
